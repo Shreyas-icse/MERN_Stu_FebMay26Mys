@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=*, initial-scale=1.0">
+    <title>grid layouts</title>
+    <style>
+        
+        
+        
+        .grid-fr{
+            display: grid;
+            /* 3 equal size cols */
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(3,100px);
+            gap: 10px;
+            margin: 20px;
+            
+        }
+        .span-column{
+            grid-column: 1/3;
+        }
+        .span-row{
+            grid-row: 2/4;
+        }
+        .span-both{
+            grid-column: 2/4;
+            grid-row: 1/3;
+        }
+        .item{
+            background-color: mediumaquamarine;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+
+    </style>
+</head>
+<body>
+    
+    
+    <!-- grid lines and grid span -->
+     <p>grid lines and grid span</p>
+    <div class="grid-fr">
+        
+        <div class="item span-column">Col span</div>
+        
+        
+         <div class="item span-row">Row span</div>
+          
+           <div class="item span-both">both spans</div>
+           
+           
+    </div>
+
+
+</body>
+</html>
