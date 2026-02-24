@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: white;
+        }
+        .logo{
+            color: purple;
+            font-size: 20px;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid black;
+            background-color: darkblue;
+            position: absolute;
+            right: 900px;
+            top: 160px;
+        }
+        .hero{
+            height: 200px;
+            width: 1360px;
+            background-color: darkblue;
+            border: 2px solid black;
+            color: white;
+        }
+        .nav-links{
+            height: 100px;
+            width: 1330px;
+            background-color: darkblue;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+        }
+        
+        .cta-button{
+            background-color: teal;
+            color: white;
+            padding: 10px 20px;
+            
+            border-radius: 5px;
+        }
+        #about{
+            height: 140px;
+            width: 1360px;
+            background-color:gray;
+            color: white;
+            
+        }
+        .about{
+            height: 100px;
+            width: 1360px;
+            background-color: darkblue;
+            color: white;
+        }
+        #skills{
+            height: 100px;
+            width: 1360px;
+            background-color: gray;
+            color: white;
+        }
+        .skills-grid{
+            height: 60px;
+            width: 1360px;
+            background-color: darkblue;
+        }
+        #projects{
+            height: 200px;
+            width: 1360px;
+            background-color: gray;
+            color: white
+        }
+        .projects-container{
+            height: 350px;
+            width: 1360px;
+            background-color: darkblue;
+            color: white;
+        }
+        .project-content{
+            height: 100px;
+            width: 1360px;
+            
+            color: white;
+        }
+        button{
+            background-color: gray;
+            color:black;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Flexbox -->
+        <nav>
+           <center> <a href="#home" class="logo">Shreyas k r</a></center>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Hero section -->
+   <center> <section id="home" class="hero">
+        <h1>Shreyas k r</h1>
+        <img src="kr.jpeg" alt="My Photo" class="profile-img">
+        <p>Software Developer <br>MERN STACK|DevOps</p>
+        <a href="#contact" class="cta-button">Contact Me</a>
+
+
+    </section></center>
+    <!-- About section -->
+     <center><section id="about">
+        <h2>About Me</h2>
+        <article class="about">
+            <h3>Full Stack developer</h3>
+            <p>Experienceed in web development and Hosting.
+                Specialized in Finance-Domain projects.
+            </p>
+            <div class="tags">
+                <span class="tag"> Backend: NodeJS</span>
+                <span class="tag"> DB:optimization</span>
+            </div>
+
+
+        </article>
+
+     </section></center>
+     <!-- Skills section -->
+      <section id="skills"><center>
+        <h3>My Skills</h3>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h4>MERN Stack</h4>
+                <p>ReactJs, ExpressJS, MongoDB, NodeJS</p>
+
+            </div>
+        </div>
+      </section></center>
+        
+      <!-- Projects section -->
+       <center><section id="projects">
+        <h3>My Projects</h3>
+        <div class="projects-container">
+            <div class="project-content">
+                <h4>gola</h4>
+                <p>rapid way to book a cab hassle free</p>
+                <button><a href="https://wikipedia.org" target="_blank" >View </a></button>
+            </div>
+            <center><table border="1px solid black">
+            <thead>
+                <th>Project</th>
+                <th colspan="2">Technology</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AWS for hosting</td>
+                    <td>MERN</td>
+                    <td>Redis</td>
+                </tr>
+            </tbody>
+        </table></center>
+        </div>
+       </section></center>
+       <!-- contact -->
+       <center> <section id="contact">
+            <form class="contact form"></form>
+            <fieldset>
+                <legend>Contact Form</legend>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name"
+                    placeholder="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email"
+                    placeholder="email" required>
+                </div>
+                <div class="form-group">
+                    <select name="type">
+                        <option value="consultant">Consultant</option>
+                        <option value="fte">FTE</option>
+                    </select>
+                </div>
+                 
+            </fieldset>
+            <button type="submit">submit-btn</button>
+        </section></center>
+
+</body>
+</html>
