@@ -10,15 +10,16 @@ const student = {
     fullname: function(){
         return this.firstName + " "+this.lastName
         },
-        greet(){
-            console.log("hi,",this,fullName());
-            
-
+    greet(){
+            console.log("hi,",this.fullName());
         }
 };
 console.log(student);
 
 console.log(student.fullname());
+// student.greet();
+
+
 
 // console.log(student);
 
