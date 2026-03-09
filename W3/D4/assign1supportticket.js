@@ -3,7 +3,7 @@ let ticket =[
     {id:"t102",priority:"low",resolved:false},
     {id:"t103",priority:"low",resolved:false},
     {id:"t104",priority:"high",resolved:true},
-    {id:"t105",priority:"medium",resolved:true}
+    {id:"t105",priority:"medium",resolved:false}
 
 ];
 //urgent ticket
