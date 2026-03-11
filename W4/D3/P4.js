@@ -12,10 +12,17 @@ document.getElementById("saveBtn").addEventListener("click",function(){
     
 });
 document.getElementById("readBtn").addEventListener("click",function(){
-    const up = localStorage.getItem("userProfile");
+    try{
+         const up = localStorage.getItem("userProfile");
     console.log(JSON.parse(up));
     console.log(up);
      jsonOutput.textContent="userProfile"+ up;
+     
+    }
+    catch(error){
+        jsonOutput.textContent = "JSON parsing failed";
+    }
+    
      
 });
     
