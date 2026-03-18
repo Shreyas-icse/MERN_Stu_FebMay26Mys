@@ -1,0 +1,23 @@
+// Why use async/await
+function getuser(){
+    return new Promise(function(resolve,){
+        setTimeout(function(){
+            resolve({id:101,name:"Shreyas"});
+        },1000);
+    });
+}
+function getOrders(userId){
+    return new Promise(function(resolve){
+        setTimeout(function(){
+            resolve(["order-A","order-B"]);
+        },1200);
+    });
+}
+async function showUserAndOrders(){
+    const user = await getuser();
+    // console.log("User Loaded: ",user);
+    const orders = await getOrders(user.id);
+    console.log("Orders loaded",orders);
+    
+}
+showUserAndOrders();
