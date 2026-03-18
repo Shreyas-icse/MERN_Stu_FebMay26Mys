@@ -27,6 +27,6 @@ async function runPaymentFlow(isSucceeded){
         
     }
 }
-runPaymentFlow(false).then(function(){
-    return runPaymentFlow(true);
+runPaymentFlow(true).then(function(){
+    return runPaymentFlow(false);
 });
