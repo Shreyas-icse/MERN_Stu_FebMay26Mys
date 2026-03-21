@@ -13,7 +13,7 @@ const projectsData = [
   {
     id: 2,
     name: "Gola",
-    category: "MERN",
+    category: "mern",
     description:
       "Cab booking platform that helps users quickly book rides for daily travel.",
     technologies: ["ReactJS", "ExpressJS", "MongoDB"],
@@ -35,7 +35,7 @@ const projectsData = [
   {
     id: 4,
     name: "Developer Stats Dashboard",
-    category: "JavaScript",
+    category: "web",
     description:
       "Dynamic dashboard that loads developer statistics and profile insights using Fetch API.",
     technologies: ["JavaScript", "Fetch API", "JSON"],
@@ -46,7 +46,7 @@ const projectsData = [
    {
     id: 5,
     name: "Blue-collar",
-    category: "JavaScript",
+    category: "ai",
     description:
       "Find skilled labours",
     technologies: ["JavaScript", "Fetch API", "JSON"],
