@@ -8,6 +8,7 @@ function renderProject(){
     projectsData.forEach(function(project){
         const card = document.createElement("div");
         card.className = "p-8 text-center bg-white rounded-3xl shadow-lg";
+        card.setAttribute("data-category", project.category.toLowerCase());
 
         //create icon
         const iconBox = document.createElement("div");
@@ -39,3 +40,4 @@ function renderProject(){
     });
     console.log("projects opened successfully");
 }
+
