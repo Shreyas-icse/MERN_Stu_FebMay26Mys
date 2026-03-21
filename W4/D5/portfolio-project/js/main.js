@@ -4,15 +4,22 @@
 // })
 // features/main(
 document.addEventListener("DOMContentLoaded",
-    function(){
+    function () {
         //Render skills
         renderSkills();
         initModal();
         initContactValidation();
         initThemeToggle();
+        initFilterButtons();
+        toggleDarkMode();
+        focusSearch();
+        scrollToTop();
+        renderExperience();
+
+
     }
 );
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
     renderSkills();
     renderProject();
