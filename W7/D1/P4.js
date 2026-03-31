@@ -6,7 +6,7 @@ const express = require('express');
 
 const app = express();
 
-//app.use() registers a middleware. This middleware runds for every incoming request.
+//app.use() registers a middleware. This middleware runs for every incoming request.
 app.use(function(req,res,next){
     console.log("Request recived",req.method,req.url);
     //next() is required when this middleware does not finish the response.
