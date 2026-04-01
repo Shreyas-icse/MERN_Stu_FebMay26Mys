@@ -21,6 +21,8 @@ console.log("JWT part count:",tokenParts.length);
 try{
     //jwt.verify() checks trust, signature and expiration
     const verifiedPayload = jwt.verify(token,secretKey);
+    //invalid token :newsecretkey
+    //const verifiedPayload = jwt.verify(token,newsecretKey);
 
     console.log("Verify Payload",verifiedPayload);
 }
