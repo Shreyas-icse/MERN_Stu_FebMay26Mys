@@ -1,6 +1,6 @@
 //handling Synchronous errors
 const express = require("express");
-const { error } = require("node:console");
+
 const app = express();
 
 app.get("/",function(req,res){
