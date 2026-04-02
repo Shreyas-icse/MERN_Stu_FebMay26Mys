@@ -133,3 +133,5 @@ app.listen(4000, function () {
 });
 //curl -X POST http://localhost:4000/login -H "Content-Type:application/json" -d "{\"
 //email\":\"email@email.com\",\"password\":\"pass@123\"}"
+//>curl -X POST http://localhost:4000/refresh -H "Content-Type:application/json" -d "{\"refreshToken\":\"
+//curl -X POST http://localhost:4000/refresh -H "Authorization:Bearer access-token"
