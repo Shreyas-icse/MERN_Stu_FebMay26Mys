@@ -12,7 +12,7 @@ const adminToken = jwt.sign({userId:2,role:"admin",email:"manga@gmail.com"},secr
 console.log("Admintoken:",adminToken);
 function authenticateToken(req,res,next){
     const authHeader = req.headers.authorization;
-    if(!authHeader){
+    if(!authHeader){8
         return res.status(401).json({
             success:false,
             message:"Authorization header is missing"
