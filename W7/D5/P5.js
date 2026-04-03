@@ -6,7 +6,7 @@ app.use(function(req,res,next){
     req.user = {
         id:101,
         username:"shreyas",
-        role:"admin"
+        role:"admin" //user or admin for testing
     };
     next();
 });
