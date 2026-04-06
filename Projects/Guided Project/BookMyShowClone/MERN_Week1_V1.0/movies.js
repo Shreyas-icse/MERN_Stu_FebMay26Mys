@@ -31,4 +31,4 @@ const movies = [
     }
 ];
 //Export the movie data so that other file can use it
-module.export = movies;
+module.exports = movies;
