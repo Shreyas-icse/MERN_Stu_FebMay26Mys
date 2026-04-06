@@ -1,4 +1,4 @@
-// This file creates and exports a custom EventEmitter
+// This file creates and exports a custom EventEmitter instance
 
 const EventEmitter = require("events");
 
