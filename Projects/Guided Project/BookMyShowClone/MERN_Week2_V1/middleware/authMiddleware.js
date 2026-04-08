@@ -12,7 +12,7 @@ function authMiddleware(req,res,next){
         const token = tokenFromHeader || req.cookies.token;
 
         if(!token){
-            return next(new customError("Access denied. Token not provided",401))
+            return next(new CustomError("Access denied. Token not provided",401));
         }
 
         const decoded = jwt.verify(token,JWT_SECRET);
