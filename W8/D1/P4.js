@@ -1,6 +1,6 @@
 //Sorting limiting and the pagination
 const mongoose=require("mongoose");
-const Product=require("./p3")
+const Product=require("./P3")
 
 async function sortPagination() {
     try{
