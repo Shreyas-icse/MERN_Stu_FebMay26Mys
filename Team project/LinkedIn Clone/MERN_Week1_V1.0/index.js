@@ -6,25 +6,25 @@ const {
   loginUser,
   getCurrentUser,
   users
-} = require("./user");
+} = require("./modules/user");
 
 const {
   addSkill,
   addEducation,
   addExperience,
   viewProfile
-} = require("./profile");
+} = require("./modules/profile");
 
 const {
   sendConnectionRequest,
   viewRequests,
   handleRequest,
   viewConnections
-} = require("./connections");
+} = require("./modules/connections");
 
 const {
   showFeed,
-}=require("./feed");
+}=require("./modules/feed");
 
 const rl = readline.createInterface({
   input: process.stdin,
