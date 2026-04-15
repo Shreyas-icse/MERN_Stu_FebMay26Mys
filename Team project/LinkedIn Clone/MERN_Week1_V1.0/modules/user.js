@@ -1,46 +1,58 @@
-// modules/user.js
-const store = require("../data/store");
-const appEvents = require("./events");
+const eventEmitter = require("./events");
 
-// create profile using Promise
+const users = [];
+let currentUser = null;
+
 function createProfile(name, headline) {
-    return new Promise(function (resolve, reject) {
-        if (!name || !headline) {
-            appEvents.emit("operationFailed", "Name and headline required");
-            reject("Name and headline required");
-            return;
-        }
+  return new Promise((resolve, reject) => {
 
-        const user = {
-            id: store.nextUserId++,
-            name: name,
-            headline: headline,
-            skills: [],
-            education: [],
-            experience: [],
-            connections: []
-        };
+    if (!name) return reject("Name is required");
 
-        store.users.push(user);
-        store.currentUser = user;
+    const exists = users.find(u => u.name === name);
+    if (exists) return reject("User already exists");
 
-        appEvents.emit("profileCreated", user);
-        resolve(user);
-    });
+    const user = {
+      id: users.length + 1,
+      name,
+      headline,
+      skills: [],
+      education: [],
+      experience: [],
+      connections: [],
+      requests: [] 
+    };
+
+    users.push(user);
+    eventEmitter.emit("profileCreated", user);
+    resolve(user);
+  });
 }
 
-// get logged in user
+function loginUser(name) {
+  return new Promise((resolve, reject) => {
+
+    const user = users.find(u => u.name === name);
+
+    if (!user) return reject("User not found");
+
+    currentUser = user;
+    eventEmitter.emit("sessionStarted", user);
+    resolve(user);
+  });
+}
+
 function getCurrentUser() {
-    return store.currentUser;
+  return currentUser;
 }
 
-// get all users
-function getAllUsers() {
-    return store.users;
+function getUserById(id) {
+  return users.find(u => u.id === id);
 }
 
 module.exports = {
-    createProfile,
-    getCurrentUser,
-    getAllUsers
+  users,
+  createProfile,
+  loginUser,
+  getCurrentUser,
+  getUserById
 };

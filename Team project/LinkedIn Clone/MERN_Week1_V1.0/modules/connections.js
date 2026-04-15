@@ -1,66 +1,99 @@
-// modules/connections.js
-const store = require("../data/store");
-const appEvents = require("./events");
+const chalk = require("chalk");
+const { users, getCurrentUser } = require("./user");
+const eventEmitter = require("./events");
 
-// send request
-function sendRequest(targetUserId) {
-    const sender = store.currentUser;
-    const receiver = store.users.find(function (user) {
-        return user.id === targetUserId;
-    });
+function sendConnectionRequest(targetId) {
+  const currentUser = getCurrentUser();
 
-    if (!sender || !receiver) {
-        appEvents.emit("operationFailed", "User not found");
-        return;
-    }
+  if (!currentUser) {
+    eventEmitter.emit("operationFailed", "Please login first");
+    return;
+  }
 
-    if (sender.id === receiver.id) {
-        appEvents.emit("operationFailed", "Cannot connect with yourself");
-        return;
-    }
+  const targetUser = users.find(u => u.id === Number(targetId));
 
-    const request = {
-        senderId: sender.id,
-        receiverId: receiver.id,
-        status: "pending"
-    };
+  if (!targetUser) {
+    eventEmitter.emit("operationFailed", "User not found");
+    return;
+  }
 
-    store.connectionRequests.push(request);
+  targetUser.requests = targetUser.requests || [];
 
-    appEvents.emit("connectionRequested", sender, receiver);
+  targetUser.requests.push({
+    from: currentUser.id,
+    status: "pending"
+  });
+
+  console.log(chalk.green("Connection request sent"));
 }
 
-// accept request
-function acceptRequest(senderId) {
-    const currentUser = store.currentUser;
+function viewRequests() {
+  const currentUser = getCurrentUser();
 
-    const request = store.connectionRequests.find(function (req) {
-        return (
-            req.senderId === senderId &&
-            req.receiverId === currentUser.id &&
-            req.status === "pending"
-        );
-    });
+  currentUser.requests = currentUser.requests || [];
 
-    if (!request) {
-        appEvents.emit("operationFailed", "Request not found");
-        return;
-    }
+  const pending = currentUser.requests.filter(r => r.status === "pending");
 
-    request.status = "accepted";
+  if (pending.length === 0) {
+    console.log(chalk.yellow("No pending requests"));
+    return;
+  }
 
-    currentUser.connections.push(senderId);
+  console.log(chalk.cyan("\n--- REQUESTS ---"));
 
-    const sender = store.users.find(function (user) {
-        return user.id === senderId;
-    });
+  pending.forEach((req, index) => {
+    const sender = users.find(u => u.id === req.from);
+    console.log(`${index + 1}. ${sender.name}`);
+  });
+}
 
-    sender.connections.push(currentUser.id);
+function handleRequest(choice, action) {
+  const currentUser = getCurrentUser();
 
-    appEvents.emit("connectionAccepted", sender, currentUser);
+  currentUser.requests = currentUser.requests || [];
+
+  const pending = currentUser.requests.filter(r => r.status === "pending");
+
+  const selected = pending[choice - 1];
+
+  if (!selected) {
+    eventEmitter.emit("operationFailed", "Invalid choice");
+    return;
+  }
+
+  const sender = users.find(u => u.id === selected.from);
+
+  currentUser.connections.push(sender.id);
+  sender.connections.push(currentUser.id);
+
+  selected.status = action === "accept" ? "accepted" : "rejected";
+
+  console.log(
+    action === "accept"
+      ? chalk.green("Connection accepted")
+      : chalk.yellow("Connection rejected")
+  );
+}
+
+function viewConnections() {
+  const currentUser = getCurrentUser();
+
+  if (currentUser.connections.length === 0) {
+    console.log(chalk.yellow("No connections"));
+    return;
+  }
+
+  console.log(chalk.cyan("\n--- CONNECTIONS ---"));
+
+  currentUser.connections.forEach(id => {
+    const user = users.find(u => u.id === id);
+    console.log(user.name);
+  });
 }
 
 module.exports = {
-    sendRequest,
-    acceptRequest
+  sendConnectionRequest,
+  viewRequests,
+  handleRequest,
+  viewConnections
 };

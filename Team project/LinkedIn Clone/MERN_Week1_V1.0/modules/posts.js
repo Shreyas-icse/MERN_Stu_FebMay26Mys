@@ -1,69 +1,48 @@
-// modules/posts.js
-const store = require("../data/store");
-const appEvents = require("./events");
+const emitter = require("./events");
+let posts = [];
+async function createPost(user, content) {
+    try {
+        const post = {
+            id: posts.length + 1,
+            authorId: user.id,
+            content,
+            timestamp: Date.now(),
+            likes: [],
+            comments: []
+        };
 
-// create a post
-function createPost(content) {
-    const user = store.currentUser;
+        posts.push(post);
+        emitter.emit("postCreated");
+        return post;
 
-    if (!user) {
-        appEvents.emit("operationFailed", "No user logged in");
-        return;
+    } catch (err) {
+        emitter.emit("operationFailed", err);
     }
-
-    const post = {
-        id: store.nextPostId++,
-        authorId: user.id,
-        content: content,
-        likes: [],
-        comments: []
-    };
-
-    store.posts.push(post);
-    appEvents.emit("postCreated", post);
 }
 
-// like a post
-function likePost(postId) {
-    const user = store.currentUser;
-
-    const post = store.posts.find(function (p) {
-        return p.id === postId;
-    });
-
-    if (!post) {
-        appEvents.emit("operationFailed", "Post not found");
-        return;
-    }
+function likePost(user, post) {
+    if (post.likes.includes(user.id)) return;
 
     post.likes.push(user.id);
-    appEvents.emit("postLiked", user, post);
+    emitter.emit("postLiked");
 }
 
-// comment on post
-function commentPost(postId, commentText) {
-    const user = store.currentUser;
-
-    const post = store.posts.find(function (p) {
-        return p.id === postId;
+function commentPost(user, post, text) {
+    post.comments.push({
+        userId: user.id,
+        text
     });
 
-    if (!post) {
-        appEvents.emit("operationFailed", "Post not found");
-        return;
-    }
+    emitter.emit("commentAdded");
+}
 
-    const comment = {
-        userId: user.id,
-        text: commentText
-    };
-
-    post.comments.push(comment);
-    appEvents.emit("commentAdded", user, commentText);
+function getAllPosts() {
+    return posts;
 }
 
 module.exports = {
     createPost,
     likePost,
-    commentPost
+    commentPost,
+    getAllPosts
 };

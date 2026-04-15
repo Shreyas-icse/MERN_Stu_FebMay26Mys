@@ -1,48 +1,44 @@
-// modules/profile.js
-const store = require("../data/store");
-const appEvents = require("./events");
+const { getCurrentUser } = require("./user");
+const eventEmitter = require("./events");
 
-// add a skill
+// Add Skill
 function addSkill(skill) {
-    const user = store.currentUser;
-
-    if (!user) {
-        appEvents.emit("operationFailed", "No user logged in");
-        return;
-    }
-
-    user.skills.push(skill);
-    appEvents.emit("profileCreated", user);
+  const user = getCurrentUser();
+  user.skills.push(skill);
+  eventEmitter.emit("profileUpdated");
 }
 
-// add education
-function addEducation(education) {
-    const user = store.currentUser;
-
-    if (!user) {
-        appEvents.emit("operationFailed", "No user logged in");
-        return;
-    }
-
-    user.education.push(education);
-    appEvents.emit("profileCreated", user);
+// Add Education
+function addEducation(edu) {
+  const user = getCurrentUser();
+  user.education.push(edu);
+  eventEmitter.emit("profileUpdated");
 }
 
-// add experience
-function addExperience(experience) {
-    const user = store.currentUser;
+// Add Experience
+function addExperience(exp) {
+  const user = getCurrentUser();
+  user.experience.push(exp);
+  eventEmitter.emit("profileUpdated");
+}
 
-    if (!user) {
-        appEvents.emit("operationFailed", "No user logged in");
-        return;
-    }
+// View Profile
+function viewProfile() {
+  const user = getCurrentUser();
 
-    user.experience.push(experience);
-    appEvents.emit("profileCreated", user);
+  return {
+    Name: user.name,
+    Headline: user.headline,
+    Skills: user.skills,
+    Education: user.education,
+    Experience: user.experience,
+    Connections: user.connections.length
+  };
 }
 
 module.exports = {
-    addSkill,
-    addEducation,
-    addExperience
+  addSkill,
+  addEducation,
+  addExperience,
+  viewProfile
 };

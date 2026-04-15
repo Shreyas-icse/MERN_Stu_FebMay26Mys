@@ -1,19 +1,38 @@
-// modules/events.js
 const EventEmitter = require("events");
 const chalk = require("chalk");
 
-const appEvents = new EventEmitter();
+const emitter = new EventEmitter();
 
-appEvents.on("profileCreated", function (user) {
-    console.log(chalk.green("Profile created for " + user.name));
+// SESSION
+emitter.on("sessionStarted", (user) => {
+  console.log(chalk.blue(`Logged in as ${user.name}`));
 });
 
-appEvents.on("postCreated", function (post) {
-    console.log(chalk.blue("Post created: " + post.content));
+// PROFILE
+emitter.on("profileCreated", (user) => {
+  console.log(chalk.green(`Profile created successfully: ${user.name}`));
 });
 
-appEvents.on("operationFailed", function (error) {
-    console.log(chalk.red("Error: " + error));
+emitter.on("profileUpdated", () => {
+  console.log(chalk.yellow("Profile updated successfully"));
 });
 
-module.exports = appEvents;
+// CONNECTIONS
+emitter.on("connectionRequestSent", () => {
+  console.log(chalk.green("Connection request sent"));
+});
+
+emitter.on("connectionAccepted", () => {
+  console.log(chalk.green("Connection accepted"));
+});
+
+emitter.on("connectionRejected", () => {
+  console.log(chalk.yellow("Connection rejected"));
+});
+
+// ERROR
+emitter.on("operationFailed", (msg) => {
+  console.log(chalk.red(`Error: ${msg}`));
+});
+
+module.exports = emitter;
