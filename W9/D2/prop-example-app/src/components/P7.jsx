@@ -1,3 +1,4 @@
+//Passing objects and arrays as props
 function UserCard({user}){
     return(
         <div className="card">
