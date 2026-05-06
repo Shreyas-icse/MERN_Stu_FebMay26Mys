@@ -2,6 +2,7 @@
 //context: lets you share data between components without passing props manually through every level
 
 import { createContext, useContext, useState } from "react";
+import {useDocumentTitle, CustomHooksIntro} from "./P2"
 
 //Why to usecontext ?
 //1. helps us avoid prop drilling
@@ -54,6 +55,7 @@ function Layout(){
         <div>
             <Header/>
             <Content/>
+           
         </div>
     );
 }
