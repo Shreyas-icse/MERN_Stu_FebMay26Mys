@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { EventBasics } from './component/P1'
+import { EventObject } from './component/P2'
 import './App.css'
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
 
   return (
     <>
-      <EventBasics/>
+      {/* <EventBasics/> */}
+      <EventObject/>
     </>
   )
 }
