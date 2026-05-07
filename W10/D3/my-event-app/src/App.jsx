@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { EventBasics } from './component/P1'
 import { EventObject } from './component/P2'
 import { PassingArguments } from './component/P3'
+import { UseCallbackEvents } from './component/P5'
 import './App.css'
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
     <>
       {/* <EventBasics/> */}
       {/* <EventObject/> */}
-      <PassingArguments/>
+      {/* <PassingArguments/> */}
+      <UseCallbackEvents/>
     </>
   )
 }
