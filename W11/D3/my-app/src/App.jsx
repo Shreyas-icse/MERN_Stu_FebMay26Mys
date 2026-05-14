@@ -5,6 +5,7 @@ import { UseEffectLifeCycle } from "./components/p2";
 import { AxiosLifeCycle } from "./components/p3";
 import { CRUDoperation } from "./components/p4";
 import { PaginationCaching } from './components/P5';
+import { UploadErrorBoundary } from './components/P6';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       {/* <UseEffectLifeCycle /> */}
       {/* <AxiosLifeCycle/> */}
       {/* <CRUDoperation/> */}
-      <PaginationCaching/>
+      {/* <PaginationCaching/> */}
+      <UploadErrorBoundary/>
 
     </>
   );
