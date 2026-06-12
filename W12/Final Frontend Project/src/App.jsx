@@ -8,6 +8,9 @@ import BookButton from './components/BookButton';
 import GenreFilter from './components/GenreFilter';
 import LoginForm from './components/loginForm';
 import SearchShortcut from './components/SearchShortcut';
+import AuthStatus from './components/AuthStatus';
+import MovieLoader from './components/MovieLoader';
+import MovieResults from './components/MovieResult';
 function App() {
  
   return (
@@ -33,13 +36,16 @@ function App() {
     // duration="2h 28m"
     // poster="https://picsum.photos/300/300?3"/>
     <>
-    <CitySelector/>
+    {/* <CitySelector/> */}
     {/* Controlled component */}
-    <MovieSearch/>
+    {/* <MovieSearch/>
     <BookButton/>
     <GenreFilter/>
     <LoginForm/>
-    <SearchShortcut/>
+    <SearchShortcut/> */}
+    <AuthStatus/>
+    <MovieLoader/>
+    <MovieResults/>
    </> 
 
   );
