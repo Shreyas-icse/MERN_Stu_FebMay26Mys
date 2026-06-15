@@ -87,81 +87,81 @@ import LoadingSpinner from "../components/LoadingSpinner";
 
 
 export default function ProtectedRoute({ children, requiredRole }) {
-    /*
-    =====================================================
-    AUTHENTICATION STATE
-  
-  
-    Retrieved from AuthContext.
-  
-  
-    =====================================================
-    */
+  /*
+  =====================================================
+  AUTHENTICATION STATE
 
 
-    // const { isAuthenticated, user } = useAuth();
+  Retrieved from AuthContext.
 
 
-    const { isAuthenticated, user, loading } = useAuth();
+  =====================================================
+  */
 
 
-    /*
-    =====================================================
-    AUTHENTICATION CHECK
-  
-  
-    Guest users must login first.
-  
-  
-    =====================================================
-    */
+  // const { isAuthenticated, user } = useAuth();
 
 
-    if (loading) {
-        return <LoadingSpinner />;
-    }
+  const { isAuthenticated, user, loading } = useAuth();
 
 
-    if (!isAuthenticated) {
-        return <Navigate to="/login" replace />;
-    }
+  /*
+  =====================================================
+  AUTHENTICATION CHECK
 
 
-    /*
-    =====================================================
-    AUTHORIZATION CHECK
-  
-  
-    Some routes require a specific role.
-  
-  
-    Example:
-  
-  
-    Admin Dashboard
-    ↓
-    role === "admin"
-  
-  
-    =====================================================
-    */
+  Guest users must login first.
 
 
-    if (requiredRole && user?.role !== requiredRole) {
-        return <Navigate to="/" replace />;
-    }
+  =====================================================
+  */
 
 
-    /*
-    =====================================================
-    ACCESS GRANTED
-  
-  
-    =====================================================
-    */
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
 
-    return children;
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+
+  /*
+  =====================================================
+  AUTHORIZATION CHECK
+
+
+  Some routes require a specific role.
+
+
+  Example:
+
+
+  Admin Dashboard
+  ↓
+  role === "admin"
+
+
+  =====================================================
+  */
+
+
+  if (requiredRole && user?.role !== requiredRole) {
+    return <Navigate to="/" replace />;
+  }
+
+
+  /*
+  =====================================================
+  ACCESS GRANTED
+
+
+  =====================================================
+  */
+
+
+  return children;
 }
 
 
